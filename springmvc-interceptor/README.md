@@ -8,3 +8,7 @@ prehandler1---prehandler2---执行controller
 使用场景：<br>
 解决乱码问题<br>
 对登陆进行判断
+
+filter依赖于servlet容器，基于回调函数，过滤范围大<br>
+interceptor依赖于框架，基于反射机制，只过滤请求
+
