@@ -16,15 +16,5 @@
     密&nbsp;码：<input type="password" name="pwd"><br>
     <input type="submit" value="登录">
   </form>
-  <%
-    User user = new User();
-    String username = request.getParameter("name");
-    String password = request.getParameter("pwd");
-    user.setUsername(username);
-    user.setPassword(password);
-    if (user!=null){
-        request.setAttribute("obj",user);
-    }
-  %>
   </body>
 </html>

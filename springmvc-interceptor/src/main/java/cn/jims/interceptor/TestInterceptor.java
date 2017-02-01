@@ -5,6 +5,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by Jims on 2017/2/1.
@@ -17,10 +18,19 @@ public class TestInterceptor implements HandlerInterceptor {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");*/
         System.out.println("执行到了preHandle方法。。。");
+        //把表单数据存入session中
 
+        String username = (String) request.getAttribute("name");
+
+        //创建session并获得session
+        request.getSession().invalidate();
+
+        HttpSession session = request.getSession();
+        session.setAttribute("obj", username);
         //对登陆的用户进行判断
         //获取session中的对象并判断是否存在
-        if (request.getAttribute("obj")==null) {
+        //把对象存入request域中，获取request域中的对象并判断是否存在 request.getAttribute("obj")==null
+        if (session.getAttribute("obj") == null) {
             request.setAttribute("msg", "小伙子是不是还没有登录？");
             //转发到登录页面
             request.getRequestDispatcher("/login2.jsp").forward(request, response);
