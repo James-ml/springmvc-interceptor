@@ -20,21 +20,21 @@ public class TestInterceptor implements HandlerInterceptor {
 
         //对登陆的用户进行判断
         //获取session中的对象并判断是否存在
-        if (request.getSession().getAttribute("obj")==null){
-            request.setAttribute("msg","小伙子是不是还没有登录？");
+        if (request.getAttribute("obj")==null) {
+            request.setAttribute("msg", "小伙子是不是还没有登录？");
             //转发到登录页面
-            request.getRequestDispatcher("/login2.jsp").forward(request,response);
+            request.getRequestDispatcher("/login2.jsp").forward(request, response);
             //终止请求
             return false;
+        } else {
+            return true;
         }
-
-        return true;
         //return false;请求被终止
     }
 
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
         System.out.println("执行到了postHandle。。。");
-        modelAndView.addObject("msg","我一点也不好！");
+        modelAndView.addObject("msg", "我一点也不好！");
         modelAndView.setViewName("hello");
     }
 

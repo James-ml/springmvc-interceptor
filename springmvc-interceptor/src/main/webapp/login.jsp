@@ -23,7 +23,7 @@
     user.setUsername(username);
     user.setPassword(password);
     if (user!=null){
-        request.getSession().setAttribute("obj",user);
+        request.setAttribute("obj",user);
     }
   %>
   </body>
